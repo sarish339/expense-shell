@@ -52,3 +52,13 @@ then
 else
     echo -e "MySQL root password is already setup..$Y SKIPPING $N" | tee -a $LOG_FILE
 fi
+
+dnf list installed mysql-server &>>$LOG_FILE
+if [ $? -ne 0 ]
+then
+    echo "mysql-server is not installed, going to install it.."  | tee -a $LOG_FILE
+    dnf install mysql-server -y &>>$LOG_FILE
+    VALIDATE $? "Installing mysql-server"
+else
+    echo -e "mysql-server is already $Y installed.. nothing to do $N"  | tee -a $LOG_FILE
+fi
