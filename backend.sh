@@ -44,7 +44,7 @@ dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "Installing nodejs"
 
 id expense &>>$LOG_FILE
-if [ $? -ne o ]
+if [ $? -ne 0 ]
 then
     echo -e "Creating user not exits..$G Creating $N"
     useradd expense &>>$LOG_FILE
